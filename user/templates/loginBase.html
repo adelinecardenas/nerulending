@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if dynamic.title %}
+    <title>{{ dynamic.title }}</title>
+    {% endif %}
+
+    <style media="screen">
+        .image {
+            max-height: 200px;
+            max-width: 500px;
+        }
+
+        .misc-box {
+            background-color: #fff;
+        }
+
+        .container {
+            padding-top: 60px;
+        }
+
+        .row {
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+        .justify-content-center {
+            justify-content: center !important;
+        }
+
+        .widthClass {
+            min-width: 280px;
+            width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .misc-header {
+            padding: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: .5rem;
+            font-weight: 400;
+        }
+
+        .group-icon {
+            position: relative;
+            display: flex;
+        }
+
+        .group-icon .form-control {
+            padding-right: 40px;
+        }
+
+        input {
+            font-size: 13px;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            -ms-border-radius: 0px;
+            border-radius: 0px;
+            box-shadow: none;
+            border: 1px solid #dde6e9;
+            transition-duration: .5s;
+            display: block;
+            width: 100%;
+            height: 25px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+        }
+
+        .float-left {
+            float: left !important;
+        }
+
+        .form-control {
+            box-shadow: 0 0 0 #000 !important;
+        }
+
+        .group-icon .icon-input {
+            position: absolute;
+            right: 0px;
+            top: 10px;
+            width: 40px;
+            text-align: center;
+        }
+
+        .text-muted {
+            color: #909fa7 !important;
+        }
+
+        .btn.btn-rounded {
+            border-radius: 100px;
+            -webkit-border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .checkbox {
+            padding-left: 5px;
+        }
+
+        .margin-r-5 {
+            margin-right: 5px !important;
+        }
+
+        .checkbox label {
+            font-weight: 300;
+            display: block;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checkbox input[type="checkbox"] {
+            cursor: pointer;
+            opacity: 0;
+            z-index: 1;
+            outline: none !important;
+        }
+
+        .btn.box-shadow {
+            -webkit-box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 6px 15px 0px rgba(0, 0, 0, 0.1);
+            border: 2px solid !important;
+            border-color: #FFFFFF !important;
+        }
+
+        input[type=button].btn-block,
+        input[type=reset].btn-block,
+        input[type=submit].btn-block {
+            width: 100%;
+        }
+
+        .btn.btn-block {
+            display: block;
+        }
+
+        .btn-primary {
+            background-color: #4b71fa !important;
+            border-color: #4b71fa !important;
+            color: #fff !important;
+        }
+
+        .btn {
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            font-size: 14px;
+            line-height: 1.538462;
+            font-weight: 400;
+            padding: 8px 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .btn-success {
+            background-color: #7bcb4d !important;
+            border-color: #7bcb4d !important;
+            color: #fff !important;
+        }
+
+        /* [START] faq styles  */
+
+        p {
+            font-size: 20px;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+
+        .fixed-max-width {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq {
+            transition: 0.1s all;
+
+        }
+
+        .faq-question {
+            border-radius: 12px 12px 0px 0px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid;
+            border-color:rgba(111, 111, 111, 0.1);
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .faq-question p {
+            font-weight: bold;
+            margin-top: 10px;
+
+        }
+
+        .faq-question:hover {
+            cursor: pointer;
+            background-color: rgba(162, 162, 162, 0.1);
+        }
+
+        .faq-answer {
+            border-radius: 0px 0px 12px 12px;
+
+            text-align: left;
+            padding: 10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+            background-color: rgb(231, 231, 231);
+        }
+
+        /* [END] faq styles  */
+    </style>
+    {% block extrastyle %}
+
+    {% endblock %}
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-md-4 col-xs-12 widthClass">
+                <div class="misc-box">
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- FAQs  -->
+    <div class="faqs fixed-max-width">
+        <div style="text-align: center; padding-top:  60px;">
+            <div>
+                <h1 style="text-align:center; font-weight: bold !important;">
+                    FAQs
+                </h1>
+            </div>
+            <!-- faq container  -->
+            <div class="faq-container">
+                <!-- faq-0  -->
+                <div class="faq">
+                    <div class="faq-question" id="faq-0">
+                        <div>
+                            <p>
+                                How do I get started?
+                            </p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Once you have signed up for our program and confirmed your membership, we will create an
+                            account
+                            with a unique username and password for you to use. This will be your way into the platform,
+                            and
+                            you can begin going through the steps to create a bankable business.
+                        </p>
+                    </div>
+                </div>
+                <!-- faq-1  -->
+                <div class="faq">
+                    <div class="faq-question" id="faq-1">
+                        <div>
+                            <p>
+                                Can You Help Setup My Business?
+                            </p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Yes - this is the first step in the compliance process. We are happy to help with this
+                            important
+                            step.
+                        </p>
+                    </div>
+                </div>
+                <!-- faq-0  -->
+                <div class="faq">
+                    <div class="faq-question" id="faq-0">
+                        <div>
+                            <p>
+                                Can I Skip a Step and Go Stright to Funding?
+                            </p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            We don't recommend it. Lenders need to “check all their boxes” when considering approving
+                            you
+                            for funding and if you skipped a step and fail to meet even one requirement you may be
+                            turned
+                            down. We recommend completing ALL steps.
+                        </p>
+                    </div>
+                </div>
+                <!-- faq-0  -->
+                <div class="faq">
+                    <div class="faq-question" id="faq-0">
+                        <div>
+                            <p>How long will it take to build business credit?</p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            That depends - if you are focused on completing the required steps, you could see results in
+                            the
+                            form of a business credit report, as soon as you register your company with the credit
+                            bureaus.
+                            This could happen in a matter of days or weeks. If life gets the best of you and you are
+                            slow to
+                            take the required steps, then this process will take longer. The ideal time frame to start
+                            getting reporting trade lines of credit within the first month and strong business credit
+                            scores
+                            within three months.
+                        </p>
+                    </div>
+                </div>
+                <!-- faq-0  -->
+                <div class="faq">
+                    <div class="faq-question" id="faq-0">
+                        <div>
+                            <p>Will I ever be “done” building credit?</p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Nope - that is to say you will always be building or hurting your business credit. Just like
+                            your personal score, a business credit score is never “done”. These scores are fluid and
+                            they
+                            change. You will always want to pay attention to and strengthen your company score. The good
+                            news is the stronger your score gets the more you can potentially get in funding.
+                        </p>
+                    </div>
+                </div>
+                <!-- faq-0  -->
+                <div class="faq">
+                    <div class="faq-question" id="faq-0">
+                        <div>
+                            <p>What if I get stuck on a step?</p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            If you are stuck on a step, refer back to our virtual coaches in the system to give you
+                            direction and guidance. You can also contact one of our trusted vendors in the system if it
+                            applies. If you are still stuck, open a help desk ticket with your questions and we will do
+                            our
+                            best to get you the answers you need.
+                        </p>
+                    </div>
+                </div>
+                <!-- faq-0  -->
+                <div class="faq">
+                    <div class="faq-question" id="faq-0">
+                        <div>
+                            <p>Can I get more funding?</p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            It depends - as you continue to solidify your business credit profile it is very likely you
+                            will
+                            continue to get larger amounts of capital from lenders for your business. If you still want
+                            more
+                            capital and your personal credit is in a good place, there are many lenders you can work
+                            with.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq">
+                    <div class="faq-question" id="faq-0">
+                        <div>
+                            <p>Can I build a credit score for more than one business?</p>
+                        </div>
+                        <div class="faq-question-icon">
+                            <!-- it gets added dynamically from the custom_logic.js file  -->
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Yes of course - each company you set up can have its own credit score. However, the platform
+                            is
+                            only designed to input information for one business at a time. If you would like to send
+                            multiple companies through the process all at once, let us know and we can talk about
+                            options
+                            for opening up multiple accounts for you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+{% include "components/JavaScriptBlock.html" %}
+<script>
+    // [START] faq click logic 
+    document.addEventListener('DOMContentLoaded', function () {
+        // Accessing an element by its ID
+        const faqItems = document.querySelectorAll('.faq');
+        // Hide the display property of other answers
+        faqItems.forEach((otherFaq, otherIndex) => {
+            otherFaq.querySelector('.faq-answer').style.display = 'none';
+            console.log("otherFaq.querySelector('.faq-question-icon')");
+            console.log(otherFaq.querySelector('.faq-question-icon'));
+            otherFaq.querySelector('.faq-question-icon').innerText = "➕";
+        });
+        // Loop over each FAQ item
+        faqItems.forEach((faq, index) => {
+            // Get the question and answer elements
+            const question = faq.querySelector('.faq-question');
+            const answer = faq.querySelector('.faq-answer');
+
+            // Add click event listener to the question
+            question.addEventListener('click', function () {
+                const faq_question_icon = faq.querySelector('.faq-question-icon');
+                // Toggle the display property of the answer
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    question.style.backgroundColor = "rgba(162, 162, 162, 0.1)";
+
+                    answer.style.display = 'block';
+                    faq_question_icon.innerText = "➖";
+
+
+                    setTimeout(() => {
+                        answer.style.opacity = '1';
+                    }, 10); // Delay added for a smoother transition
+                } else {
+                    answer.style.opacity = '0';
+                    question.style.backgroundColor = "white";
+                    setTimeout(() => {
+                        answer.style.display = 'none';
+                        faq_question_icon.innerText = "➕";
+                    }, 200); // Adjust the delay to match the transition duration
+                }
+
+
+                // Hide the display property of other answers
+                faqItems.forEach((otherFaq, otherIndex) => {
+                    if (otherIndex !== index) {
+                        otherFaq.querySelector('.faq-answer').style.display = 'none';
+                        otherFaq.querySelector('.faq-answer').style.opacity = 0;
+                    }
+                });
+            });
+        });
+
+    });
+    // [END] faq click logic 
+</script>
+<script>
+    $(".nano").nanoScroller();
+
+    // Left menu collapse
+    $('.left-nav-toggle a').on('click', function (event) {
+        event.preventDefault();
+        $("body").toggleClass("nav-toggle");
+    });
+
+    // Left menu collapse
+    $('.left-nav-collapsed a').on('click', function (event) {
+        event.preventDefault();
+        $("body").toggleClass("nav-collapsed");
+    });
+
+    // Left menu collapse
+    $('.right-sidebar-toggle').on('click', function (event) {
+        event.preventDefault();
+        $("#right-sidebar-toggle").toggleClass("right-sidebar-toggle");
+    });
+
+    //metis menu
+    $('#menu').metisMenu();
+
+    //slim scroll
+    $('.scrollDiv').slimScroll({
+        color: '#eee',
+        size: '5px',
+        height: '293px',
+        alwaysVisible: false
+    });
+
+    //tooltip popover
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="popover"]').popover();
+</script>
+
+</html>

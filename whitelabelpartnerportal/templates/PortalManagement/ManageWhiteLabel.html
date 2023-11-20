@@ -1,0 +1,54 @@
+{% extends "pages/base-whitelabel.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    <script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous"
+            data-cfasync="false">
+    </script>
+    <script>
+        var chatPal = new ChatPal({
+            embedId: 'DfT7BnTm5dGn',
+            remoteBaseUrl: 'https://chatterpal.me/',
+            version: '7.23'
+        });
+    </script>
+{% endblock extrastyle %}
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% block content %}
+    <div class="row page-header">
+        <div class="col-lg-6 align-self-center ">
+            <h2>Portal Settings</h2></div>
+    </div>
+
+    <section class="main-content">
+        {% for content in contents %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-default">
+                        <button class="btn btn-primary" type='button' 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#collapse{{content.index}}" 
+                            aria-expanded="false" aria-controls="collapse{{content.index}}">
+                            Manage {{ content.name }}
+                        </button>                        
+                    </div>
+                    <div class="collapse show" id="collapse{{content.index}}">
+                        <div class="card-body">
+                            <form method="post">{% csrf_token %}
+                                {{ content.form.as_p }}
+                                <button class="btn btn-primary">Save changes</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </section>
+
+{% endblock %}

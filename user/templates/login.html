@@ -1,0 +1,97 @@
+{% extends "loginBase.html" %}
+{% block extrastyle %}
+<style>
+    .misc-box {
+        box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+
+        padding: 32px;
+
+        background-color: {
+                {
+                dynamic.login_window_color
+            }
+        }
+
+    }
+</style>
+
+
+{% endblock %}
+{% block content %}
+
+<form class="new_user" id="new_user" action="{% url 'user:login' %}" accept-charset="UTF-8" method="post">
+    <div class="row justify-content-center">
+        <div class="misc-header text-center">
+            {% if dynamic.logo and dynamic.logo.url %}
+            <img class="toggle-none hidden-xs image" src="{{ dynamic.logo.url }}" />
+            {% endif %}
+        </div>
+
+    </div>
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <div class="form-group">
+        <label for="user_email">Email</label>
+        <div class="group-icon">
+            {{ form.username }}
+            <span class="icon-user text-muted icon-input"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="user_password">Password</label><br />
+        <div class="group-icon">
+            {{ form.password }}
+            <span class="icon-lock text-muted icon-input"></span>
+        </div>
+    </div>
+
+    {% if error %}
+
+    {% endif %}
+    {% if form.errors %}
+    <p class="text-center">
+        <font size="3" color="red">
+            Your username and password didn't match. Please try again.
+        </font>
+    </p>
+    {% endif %}
+    {% if password_change_msg %}
+    <p class="text-center">
+        <font size="3" color="green">{{ password_change_msg }}</font>
+    </p>
+    {% endif %}
+
+    <div class="clearfix">
+        <div class="float-right">
+            <input type="submit" name="commit" style="height: 40px;" value="Log in"
+                class="btn btn-block btn-primary btn-rounded box-shadow" data-disable-with="Log in" />
+        </div>
+    </div>
+    <br>
+
+
+    <p class="text-center">Don't have an account?
+        <a href="{% url 'user:signup' %}">Sign Up</a>
+    </p>
+
+    <p class="text-center">Forgot your Password? <a href=" {% url 'user:password_change' %}">Reset Password</a>
+    </p>
+
+
+    <!-- <p class=" text-center">Do Not Have An Account?<br />Register Below!</p>
+    <a class="btn btn-block btn-success btn-rounded box-shadow" href="{% url 'user:signup' %}">Create A New
+        Account</a>
+    <br>
+    <p class=" text-center">Forgot Password?</p>
+    <a class="btn btn-block btn-success btn-rounded box-shadow" href=" {% url 'user:password_change' %}">Reset
+        Password</a> -->
+</form>
+
+
+<style>
+    .clearfix {
+        height: 56px;
+    }
+</style>
+{% endblock %}
