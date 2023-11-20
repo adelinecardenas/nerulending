@@ -57,7 +57,7 @@ def whitelabel_processor(request):
                 'is_main_site': True,
                 'show_index_white_label': True,
 
-                'title': 'Get Dinero Today',
+                'title': 'We Are Bankable',
                 # 'title': 'Holliday consulting',
                 # 'title': 'Saw consulting',
                 'androidApp': "https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
